@@ -1,0 +1,279 @@
+!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Eventra — Celebrate Indian Heritage, Festivals &amp; Culture</title>
+  <meta name="description" content="Eventra is an event platform for Indian culture: festivals, classical dance, music, crafts and heritage walks. Explore, learn why heritage matters, and register in seconds." />
+  <meta name="theme-color" content="#fff8e1" />
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0' y1='0' x2='1' y2='1'%3E%3Cstop offset='0' stop-color='%23e8590c'/%3E%3Cstop offset='1' stop-color='%23c2255c'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='64' height='64' rx='16' fill='url(%23g)'/%3E%3Cpath d='M20 18h24v6H27v6h14v6H27v6h17v6H20z' fill='white'/%3E%3C/svg%3E" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Noto+Sans+Devanagari:wght@500;600&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/styles.css" />
+  <script>
+    /* Apply saved theme before paint to avoid a flash */
+    try {
+      var t = localStorage.getItem("eventra:theme");
+      if (t === "light" || t === "dark") document.documentElement.dataset.theme = t;
+    } catch (e) {}
+  </script>
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <div class="toran" aria-hidden="true"></div>
+  <div class="scroll-progress" id="scrollProgress" aria-hidden="true"></div>
+ 
+  <!-- Ambient animated background -->
+  <div class="aurora" aria-hidden="true">
+    <span class="orb orb-1"></span>
+    <span class="orb orb-2"></span>
+    <span class="orb orb-3"></span>
+    <span class="orb orb-4"></span>
+    <span class="grid-overlay"></span>
+  </div>
+  <div class="cursor-glow" id="cursorGlow" aria-hidden="true"></div>
+ 
+  <!-- Navigation -->
+  <header class="nav-wrap">
+    <nav class="nav glass" aria-label="Main">
+      <a href="#/" class="brand" aria-label="Eventra home">
+        <span class="brand-mark">E</span><span class="brand-name">Eventra <small class="deva" lang="hi" style="font-weight:500;font-size:.8em;opacity:.75">उत्सव</small></span>
+      </a>
+      <ul class="nav-links" id="navLinks">
+        <li><a href="#/" data-route="home">Home</a></li>
+        <li><a href="#/events" data-route="events">Events</a></li>
+        <li><a href="#/heritage" data-route="heritage">Heritage</a></li>
+        <li><a href="#/register" data-route="register">Register</a></li>
+        <li><a href="#/tickets" data-route="tickets">My Tickets <span class="badge" id="ticketBadge" hidden>0</span></a></li>
+      </ul>
+      <div class="nav-actions">
+        <button class="icon-btn" id="themeToggle" aria-label="Toggle dark / light theme" title="Toggle theme">
+          <svg class="i-sun" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg>
+          <svg class="i-moon" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg>
+        </button>
+        <button class="icon-btn menu-btn" id="menuBtn" aria-label="Open menu" aria-expanded="false" aria-controls="navLinks">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </nav>
+  </header>
+ 
+  <main id="main" tabindex="-1">
+    <!-- ======================= HOME ======================= -->
+    <section class="view" id="view-home" data-view="home">
+      <!-- Hero -->
+      <div class="hero container">
+        <svg class="mandala" id="heroMandala" viewBox="0 0 200 200" aria-hidden="true"></svg>
+        <div class="hero-copy reveal">
+          <span class="pill glass"><span class="deva" lang="hi">नमस्ते</span> · <span class="dot"></span> 16 heritage events open for registration</span>
+          <h1>Celebrate the spirit of <span class="grad-text" id="typed">heritage</span><span class="caret" aria-hidden="true">|</span></h1>
+          <p class="lead">From the lamps of Diwali to Odissi under the stars, from Pattachitra painting to a sunrise temple walk. Discover India's living traditions, understand why they matter, and reserve your seat in seconds.</p>
+          <div class="hero-cta">
+            <a href="#/events" class="btn btn-primary magnetic">Explore events
+              <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+            </a>
+            <a href="#/heritage" class="btn btn-glass magnetic">Why heritage matters</a>
+          </div>
+          <div class="hero-stats" id="heroStats"></div>
+        </div>
+ 
+        <aside class="hero-card glass tilt reveal" id="heroNext" aria-label="Next upcoming event"></aside>
+      </div>
+ 
+      <!-- Marquee -->
+      <div class="marquee" aria-hidden="true">
+        <div class="marquee-track" id="marquee"></div>
+      </div>
+ 
+      <!-- Heritage teaser -->
+      <section class="section container" id="heritage-teaser">
+        <header class="section-head reveal">
+          <span class="eyebrow">Why it matters</span>
+          <h2>Heritage is how a civilisation remembers itself</h2>
+          <p>India's heritage is a living inheritance: monuments in stone, but also songs, festivals, recipes, crafts and ideas that millions of people practise every day. Protecting it keeps our roots, our livelihoods and our shared knowledge alive for the next generation.</p>
+        </header>
+        <div class="facts" id="homeFacts"></div>
+        <div style="text-align:center;margin-top:32px" class="reveal"><a class="btn btn-primary magnetic" href="#/heritage">Read the heritage guide</a></div>
+      </section>
+ 
+      <div class="motif-divider" aria-hidden="true"><svg id="divLotus" viewBox="0 0 48 48" width="40" height="40"></svg></div>
+ 
+      <!-- Festival calendar -->
+      <section class="section container" id="calendar">
+        <header class="section-head reveal">
+          <span class="eyebrow">Festival calendar</span>
+          <h2>What's coming up</h2>
+          <p>Key celebrations from Diwali to Republic Day. Where we host a matching event, you can register in one click.</p>
+        </header>
+        <div class="cal-strip" id="homeCal" tabindex="0" aria-label="Festival calendar, scroll horizontally"></div>
+      </section>
+ 
+      <!-- Featured -->
+      <section class="section container" id="featured">
+        <header class="section-head reveal">
+          <span class="eyebrow">Featured</span>
+          <h2>Don't miss these</h2>
+          <p>Hand-picked highlights from our cultural calendar.</p>
+        </header>
+        <div class="bento" id="featuredGrid"></div>
+      </section>
+ 
+      <!-- Browse -->
+      <section class="section container" id="browse">
+        <header class="section-head reveal">
+          <span class="eyebrow">Browse</span>
+          <h2>Upcoming events</h2>
+          <p>Search by name, region, venue or tag, and filter by category.</p>
+        </header>
+        <div id="browsePanel"></div>
+      </section>
+ 
+      <!-- Arts explorer -->
+      <section class="section container" id="arts">
+        <header class="section-head reveal">
+          <span class="eyebrow">Explore India's traditions</span>
+          <h2>Seven doors into heritage</h2>
+          <p>Choose a theme to learn the story behind it. You can read the full guide on the Heritage page.</p>
+        </header>
+        <div id="homeTabs" class="reveal"></div>
+      </section>
+ 
+      <!-- How it works -->
+      <section class="section container">
+        <header class="section-head reveal">
+          <span class="eyebrow">How it works</span>
+          <h2>From curious to confirmed in 3 steps</h2>
+        </header>
+        <div class="steps">
+          <article class="glass step reveal tilt"><span class="step-num">01</span><h3>Discover</h3><p>Search festivals, dances, crafts and walks. Save favourites and read the story behind each event.</p></article>
+          <article class="glass step reveal tilt"><span class="step-num">02</span><h3>Register</h3><p>A short, validated form — name, email, phone and you're in.</p></article>
+          <article class="glass step reveal tilt"><span class="step-num">03</span><h3>Show up</h3><p>Get an instant digital ticket, add it to your calendar and experience the tradition.</p></article>
+        </div>
+      </section>
+ 
+      <!-- Testimonials -->
+      <section class="section container">
+        <header class="section-head reveal">
+          <span class="eyebrow">Loved by attendees</span>
+          <h2>What people are saying</h2>
+        </header>
+        <div class="quotes">
+          <figure class="glass quote reveal"><blockquote>"I registered for the Odissi evening in under a minute. The programme notes helped me finally understand what I was watching."</blockquote><figcaption><span class="avatar" style="--a:#7c5cff">AS</span> Anika S. <small>Dance enthusiast</small></figcaption></figure>
+          <figure class="glass quote reveal"><blockquote>"The heritage walk was the best morning I have had in months. The guide made every carving come alive."</blockquote><figcaption><span class="avatar" style="--a:#14b8a6">RK</span> Rahul K. <small>History student</small></figcaption></figure>
+          <figure class="glass quote reveal"><blockquote>"We handled 300 sign-ups for our rangoli workshop without a single spreadsheet. Clean and simple."</blockquote><figcaption><span class="avatar" style="--a:#f43f5e">MP</span> Meera P. <small>Event coordinator</small></figcaption></figure>
+        </div>
+      </section>
+ 
+      <!-- FAQ -->
+      <section class="section container narrow">
+        <header class="section-head reveal">
+          <span class="eyebrow">FAQ</span>
+          <h2>Good to know</h2>
+        </header>
+        <div class="faq reveal" id="faq">
+          <details class="glass"><summary>Is registration free?</summary><p>Many events are free. Paid events show the ticket price on the card and detail page. This demo does not process real payments.</p></details>
+          <details class="glass"><summary>Where is my registration stored?</summary><p>In your browser's Local Storage — it stays on your device and is available under <a href="#/tickets">My Tickets</a>.</p></details>
+          <details class="glass"><summary>Can I cancel a registration?</summary><p>Yes. Open My Tickets and choose Cancel. The seat is released immediately.</p></details>
+          <details class="glass"><summary>Are these official festival events?</summary><p>No. These are sample student-project events inspired by real traditions. Festival dates (Diwali on 8 Nov 2026, Kartik Purnima on 24 Nov, Konark Festival on 1–5 Dec, Makar Sankranti on 15 Jan 2027) are real; the organisers, venues and artists are fictional.</p></details>
+          <details class="glass"><summary>Is the site accessible?</summary><p>It uses semantic HTML, keyboard navigation, visible focus states, ARIA labels and respects reduced-motion settings.</p></details>
+        </div>
+      </section>
+    </section>
+ 
+    <!-- ======================= EVENTS ======================= -->
+    <section class="view" id="view-events" data-view="events" hidden>
+      <div class="container page-top">
+        <header class="section-head">
+          <span class="eyebrow">All events</span>
+          <h2>Explore the calendar</h2>
+          <p>Search, filter and sort to find the perfect event.</p>
+        </header>
+        <div id="eventsPagePanel"></div>
+      </div>
+    </section>
+ 
+    <!-- ======================= HERITAGE ======================= -->
+    <section class="view" id="view-heritage" data-view="heritage" hidden>
+      <div class="container h-hero">
+        <svg class="mandala" id="heritageMandala" viewBox="0 0 200 200" aria-hidden="true"></svg>
+        <span class="eyebrow">Heritage guide · <span class="deva" lang="hi">भारतीय विरासत</span></span>
+        <h1>Why Indian heritage <span class="grad-text">matters</span></h1>
+        <p class="lead lead-block">Heritage is what a society inherits, lives with and chooses to pass on: temples and texts, dance and drumbeats, festivals, food, crafts and philosophies. This guide explains what it includes, why it is worth protecting and how you can take part.</p>
+      </div>
+      <section class="section container" style="padding-top:20px"><div class="facts" id="hFacts"></div><p class="muted" style="margin-top:16px;font-size:.88rem">Counts as of 2025, from UNESCO lists for India.</p></section>
+      <section class="section container"><header class="section-head reveal"><span class="eyebrow">Six reasons</span><h2>Why it is important</h2></header><div class="why" id="hWhy"></div></section>
+      <section class="section container"><header class="section-head reveal"><span class="eyebrow">Explore</span><h2>Seven living traditions</h2></header><div id="hTabs"></div></section>
+      <section class="section container"><header class="section-head reveal"><span class="eyebrow">UNESCO World Heritage</span><h2>Monuments recognised by the world</h2><p>India has 44 World Heritage Sites (36 cultural, 7 natural, 1 mixed). A selection:</p></header><div class="wh-grid" id="hWH"></div></section>
+      <section class="section container"><header class="section-head reveal"><span class="eyebrow">UNESCO Intangible Heritage</span><h2>Traditions that live in people</h2><p>All 16 elements inscribed for India, from the most recent back to 2008.</p></header><div class="ich-grid" id="hICH"></div></section>
+      <section class="section container"><header class="section-head reveal"><span class="eyebrow">Festival calendar</span><h2>Celebrations ahead</h2></header><div class="cal-strip" id="hCal" tabindex="0" aria-label="Festival calendar, scroll horizontally"></div></section>
+      <section class="section container"><header class="section-head reveal"><span class="eyebrow">Visitor guide</span><h2>Heritage etiquette</h2><p>Simple courtesies that keep living traditions respected.</p></header><div class="etq" id="hEtq"></div></section>
+      <section class="section container"><header class="section-head reveal"><span class="eyebrow">Take part</span><h2>How you can help preserve it</h2></header><ul class="preserve" id="hPreserve"></ul></section>
+      <section class="section container"><div class="glass pullquote reveal"><span class="deva" lang="hi">अतिथि देवो भव</span><p>"The guest is equal to God" — a line from the Taittiriya Upanishad that shapes Indian hospitality. Every event on this site is an invitation to be a guest in someone's tradition.</p></div></section>
+      <section class="section container"><div class="glass cta-band reveal"><h2>Experience it, don't just read about it</h2><p>Pick a festival, a dance evening or a craft workshop and become part of the story.</p><a class="btn btn-primary magnetic" href="#/events">Browse heritage events</a></div></section>
+    </section>
+ 
+    <!-- ======================= DETAIL ======================= -->
+    <section class="view" id="view-event" data-view="event" hidden>
+      <div class="container page-top" id="detailRoot"></div>
+    </section>
+ 
+    <!-- ======================= REGISTER ======================= -->
+    <section class="view" id="view-register" data-view="register" hidden>
+      <div class="container page-top narrow">
+        <header class="section-head">
+          <span class="eyebrow">Register</span>
+          <h2>Reserve your seat</h2>
+          <p>It takes less than a minute. All fields are validated as you type.</p>
+        </header>
+        <div class="glass form-card" id="registerRoot"></div>
+      </div>
+    </section>
+ 
+    <!-- ======================= TICKETS ======================= -->
+    <section class="view" id="view-tickets" data-view="tickets" hidden>
+      <div class="container page-top">
+        <header class="section-head">
+          <span class="eyebrow">My tickets</span>
+          <h2>Your registrations</h2>
+          <p>Stored securely in this browser using Local Storage.</p>
+        </header>
+        <div id="ticketsRoot"></div>
+      </div>
+    </section>
+  </main>
+ 
+  <footer class="footer">
+    <div class="container footer-inner glass">
+      <div>
+        <a href="#/" class="brand"><span class="brand-mark">E</span><span class="brand-name">Eventra</span></a>
+        <p class="muted">Celebrating Indian heritage: festivals, dance, music, crafts and walks. Discover, learn and register.</p>
+      </div>
+      <div>
+        <h4>Explore</h4>
+        <ul><li><a href="#/events">All events</a></li><li><a href="#/heritage">Heritage guide</a></li><li><a href="#/register">Register</a></li><li><a href="#/tickets">My tickets</a></li></ul>
+      </div>
+      <div>
+        <h4>Built with</h4>
+        <ul><li>HTML5 &amp; CSS3</li><li>Vanilla JavaScript</li><li>Local Storage</li></ul>
+      </div>
+      <div class="footer-shloka"><span class="deva" lang="hi">वसुधैव कुटुम्बकम्<small>"The world is one family" — Maha Upanishad</small></span><span class="deva" lang="hi">अतिथि देवो भव<small>"The guest is God" — Taittiriya Upanishad</small></span></div>
+      <p class="disclaimer">Sample project: events, organisers, venues and artists are fictional and are inspired by real traditions. Festival dates and UNESCO facts are from public sources. Not affiliated with any official festival.</p>
+      <p class="copy">© <span id="year"></span> Eventra · K Explore Web Designing Project</p>
+    </div>
+  </footer>
+ 
+  <!-- Overlay: confirmation modal -->
+  <div class="modal" id="modal" hidden>
+    <div class="modal-backdrop" data-close></div>
+    <div class="modal-card glass" role="dialog" aria-modal="true" aria-labelledby="modalTitle" id="modalCard"></div>
+  </div>
+ 
+  <div class="toasts" id="toasts" aria-live="polite" aria-atomic="false"></div>
+  <canvas id="confetti" aria-hidden="true"></canvas>
+ 
+  <script src="js/data.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>
+ 
